@@ -18,19 +18,6 @@ import { IWarehouse } from 'types/Warehouse';
 const DataTable: FC<{
   T: IFactory[] | IInventory[] | IWarehouse[] | IMachine[];
 }> = (props): JSX.Element => {
-  // console.log(props);
-  const getTableHeaders = (genericObject: typeof props.T): string[] => {
-    let tableHeaders: string[] = [];
-    if (genericObject !== null && genericObject !== undefined) {
-      tableHeaders = Object.keys(genericObject).map((header) => {
-        return header.replace(/([a-z])([A-Z])/g, '$1 $2');
-      });
-      return tableHeaders;
-    } else {
-      return [];
-    }
-  };
-
   return (
     <TableContainer component={Paper}>
       <Table>

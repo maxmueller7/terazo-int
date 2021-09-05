@@ -2,7 +2,11 @@
 <img src="https://image-cdn.neatoshop.com/styleimg/105300/none/iceblue/default/459678-20;1592408031x.jpg" alt="Vandelay Logo" width='50%'/>
 </p>
 
+<br />
+
 # To Run this Project Locally:
+
+You have to run these two commands concurrently in two terminal instances:
 
 ## `npm start`
 
@@ -19,6 +23,8 @@ Launches the json-server with mock data in port `3001`). The available routes ar
 - [http://localhost:3000/factories](http://localhost:3000/factories)
 - [http://localhost:3000/factories/1/machines](http://localhost:3000/factories/1/machines)
 - [http://localhost:3000/warehouses/1/inventory](http://localhost:3000/warehouses/1/inventory)
+
+<br />
 
 # To Acess On The Web:
 
