@@ -1,0 +1,50 @@
+{
+  "factories": [
+    {
+      "factoryId": 1,
+      "factoryName": "Newark Latex Mfg.",
+      "factoryDescription": "Key East Coast facility for raw latex material to be processed into final products for the medical industry.",
+      "address": {
+        "buildingName": "Old Ark Building",
+        "streetLine1": "5055 George Constanza Blvd.",
+        "streetLine2": "Cost Center 1",
+        "city": "Newark",
+        "stateProvice": "NJ",
+        "zipPostalCode": "07101"
+      }
+    }
+  ],
+  "machines": [
+    {
+      "factoryId": 1,
+      "machineId": 1,
+      "machineName": "Extruder AB-100",
+      "machineDescription": "Extruder with 1,000fpm output capacity"
+    }
+  ],
+  "warehouses": [
+    {
+      "warehouseId": 1,
+      "warehouseName": "Pier 10 Holdings",
+      "warehouseDescription": "Key East Coast shipping/receiving location for storing finished product, ready for distribution.",
+      "address": {
+        "buildingName": "The Duke of Parma",
+        "streetLine1": "1547 Farmese Rd.",
+        "streetLine2": "",
+        "city": "Parma",
+        "stateProvice": "NY",
+        "zipPostalCode": "14468"
+      }
+    }
+  ],
+  "inventory": [
+    {
+      "warehouseId": 1,
+      "itemId": 10003,
+      "itemSKU": 456132447,
+      "itemQuantity": "46",
+      "itemName": "Waterproof Seal",
+      "itemDescription": "For sealing specimens to preserve them."
+    }
+  ]
+}
