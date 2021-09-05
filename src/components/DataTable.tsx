@@ -49,7 +49,6 @@ const DataTable: FC<{
               {Object.values(items).map((item: typeof props.T) => (
                 <TableCell>{item}</TableCell>
               ))}
-              ;
             </TableRow>
           ))}
         </TableBody>
