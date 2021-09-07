@@ -29,3 +29,9 @@ Launches the json-server with mock data in port `3001`). The available routes ar
 # To Acess On The Web:
 
 You can open the app on [https://vandelay-fine-latex.herokuapp.com](https://vandelay-fine-latex.herokuapp.com/). You might have to wait about a minute for it to load since it will have to spin up the dyno.
+
+<br />
+
+# Project takeaways:
+
+I'm going to be listing here the issues I came about, how I struggled with them, how I solved them, and what I learned form them. But for now, it's time to go to the synagogue to ring in the new year! 🕍
