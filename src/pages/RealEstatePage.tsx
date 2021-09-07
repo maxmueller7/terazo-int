@@ -1,6 +1,12 @@
+import { CircularProgress, Paper } from '@material-ui/core';
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import { RealEstateTable } from 'components/RealEstateTable';
 import React, { FC, useEffect, useReducer, useState } from 'react';
-import { BuildingType, RealEstateAsset } from 'types/RealEstateAsset';
+import {
+  BuildingType,
+  RealEstateEndpoints,
+  RealEstateAsset,
+} from 'types/RealEstateAsset';
 
 export const RealEstatePage: FC<{}> = (): JSX.Element => {
   const [loading, setLoading] = useState(false);
@@ -13,7 +19,9 @@ export const RealEstatePage: FC<{}> = (): JSX.Element => {
 
   const getRealEstateAssets = async (assetType: BuildingType) => {
     const endpoint =
-      assetType === BuildingType.FACTORY ? 'factories' : 'warehouses';
+      assetType === BuildingType.FACTORY
+        ? RealEstateEndpoints.FACTORIES
+        : RealEstateEndpoints.WAREHOUSES;
 
     return await axios
       .get<RealEstateAsset<BuildingType>>(`http://localhost:3001/${endpoint}`)
@@ -37,7 +45,23 @@ export const RealEstatePage: FC<{}> = (): JSX.Element => {
       setWarehouses(warehouses);
       setFactories(factories);
     });
+    setLoading(false);
   }, []);
 
-  return <div>qwe</div>;
+  return (
+    <>
+      {loading ? (
+        <CircularProgress color='secondary' />
+      ) : (
+        <Paper elevation={3}>
+          {!!warehouses.length && (
+            <RealEstateTable
+              realEstateAssets={warehouses}
+              assetType={BuildingType.WAREHOUSE}
+            />
+          )}
+        </Paper>
+      )}
+    </>
+  );
 };

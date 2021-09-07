@@ -1,5 +1,10 @@
 import { IAddress } from 'types/Address';
 
+export enum RealEstateEndpoints {
+  FACTORIES = 'factories',
+  WAREHOUSES = 'warehouses',
+}
+
 export enum BuildingType {
   WAREHOUSE = 'warehouse',
   FACTORY = 'factory',
