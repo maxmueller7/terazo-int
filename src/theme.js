@@ -1,8 +1,11 @@
-import { createTheme } from '@material-ui/core';
+import { createTheme, responsiveFontSizes } from '@material-ui/core';
 import { teal, orange } from '@material-ui/core/colors';
 
-export const theme = createTheme({
+let theme = createTheme({
   palette: {
+    background: {
+      default: '#f6f6f6',
+    },
     primary: {
       main: teal[500],
     },
@@ -11,3 +14,6 @@ export const theme = createTheme({
     },
   },
 });
+
+theme = responsiveFontSizes(theme);
+export default theme;

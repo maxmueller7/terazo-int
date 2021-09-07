@@ -4,13 +4,14 @@
       "factoryId": 1,
       "factoryName": "Newark Latex Mfg.",
       "factoryDescription": "Key East Coast facility for raw latex material to be processed into final products for the medical industry.",
-      "address": {
+      "factoryAddress": {
         "buildingName": "Old Ark Building",
         "streetLine1": "5055 George Constanza Blvd.",
         "streetLine2": "Cost Center 1",
         "city": "Newark",
-        "stateProvice": "NJ",
-        "zipPostalCode": "07101"
+        "stateProvince": "NJ",
+        "zipPostalCode": "07101",
+        "country": "USA"
       }
     }
   ],
@@ -27,13 +28,28 @@
       "warehouseId": 1,
       "warehouseName": "Pier 10 Holdings",
       "warehouseDescription": "Key East Coast shipping/receiving location for storing finished product, ready for distribution.",
-      "address": {
+      "warehouseAddress": {
         "buildingName": "The Duke of Parma",
         "streetLine1": "1547 Farmese Rd.",
         "streetLine2": "",
         "city": "Parma",
-        "stateProvice": "NY",
-        "zipPostalCode": "14468"
+        "stateProvince": "NY",
+        "zipPostalCode": "14468",
+        "country": "USA"
+      }
+    },
+    {
+      "warehouseId": 2,
+      "warehouseName": "The Nahasapeemapetilon",
+      "warehouseDescription": "Central West Coast Distribution center",
+      "warehouseAddress": {
+        "buildingName": "Duff HQ",
+        "streetLine1": "2 Evergreen Ter.",
+        "streetLine2": "",
+        "city": "Springfield",
+        "stateProvince": "OR",
+        "zipPostalCode": "97403",
+        "country": "USA"
       }
     }
   ],
