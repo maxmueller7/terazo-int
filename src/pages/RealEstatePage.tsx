@@ -1,4 +1,4 @@
-import { CircularProgress, Paper } from '@material-ui/core';
+import { CircularProgress, Paper, Typography } from '@material-ui/core';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { RealEstateTable } from 'components/RealEstateTable';
 import React, { FC, useEffect, useReducer, useState } from 'react';
@@ -9,7 +9,7 @@ import {
 } from 'types/RealEstateAsset';
 
 export const RealEstatePage: FC<{}> = (): JSX.Element => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [warehouses, setWarehouses] = useState<
     RealEstateAsset<BuildingType.WAREHOUSE>[]
   >([]);
@@ -36,8 +36,6 @@ export const RealEstatePage: FC<{}> = (): JSX.Element => {
   };
 
   useEffect(() => {
-    setLoading(true);
-
     Promise.all([
       getRealEstateAssets(BuildingType.WAREHOUSE),
       getRealEstateAssets(BuildingType.FACTORY),
@@ -45,7 +43,9 @@ export const RealEstatePage: FC<{}> = (): JSX.Element => {
       setWarehouses(warehouses);
       setFactories(factories);
     });
-    setLoading(false);
+    //setting some time out to allow browser to render grid (memory heavy!),
+    //otherwise it loads the typography first and it looks odd.
+    setTimeout(() => setLoading(false), 1000);
   }, []);
 
   return (
@@ -53,14 +53,31 @@ export const RealEstatePage: FC<{}> = (): JSX.Element => {
       {loading ? (
         <CircularProgress color='secondary' />
       ) : (
-        <Paper elevation={3}>
-          {!!warehouses.length && (
-            <RealEstateTable
-              realEstateAssets={warehouses}
-              assetType={BuildingType.WAREHOUSE}
-            />
-          )}
-        </Paper>
+        <>
+          <Typography variant='h4' color='secondary'>
+            Warehouses
+          </Typography>
+          <Paper elevation={3}>
+            {!!warehouses.length && (
+              <RealEstateTable
+                realEstateAssets={warehouses}
+                assetType={BuildingType.WAREHOUSE}
+              />
+            )}
+          </Paper>
+          <br />
+          <Typography variant='h4' color='secondary'>
+            Factories
+          </Typography>
+          <Paper elevation={3}>
+            {!!factories.length && (
+              <RealEstateTable
+                realEstateAssets={factories}
+                assetType={BuildingType.FACTORY}
+              />
+            )}
+          </Paper>
+        </>
       )}
     </>
   );

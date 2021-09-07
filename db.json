@@ -51,6 +51,104 @@
         "zipPostalCode": "97403",
         "country": "USA"
       }
+    },
+    {
+      "warehouseId": 3,
+      "warehouseName": "The Nahasapeemapetilon",
+      "warehouseDescription": "Central West Coast Distribution center",
+      "warehouseAddress": {
+        "buildingName": "Duff HQ",
+        "streetLine1": "2 Evergreen Ter.",
+        "streetLine2": "",
+        "city": "Springfield",
+        "stateProvince": "OR",
+        "zipPostalCode": "97403",
+        "country": "USA"
+      }
+    },
+    {
+      "warehouseId": 4,
+      "warehouseName": "The Nahasapeemapetilon",
+      "warehouseDescription": "Central West Coast Distribution center",
+      "warehouseAddress": {
+        "buildingName": "Duff HQ",
+        "streetLine1": "2 Evergreen Ter.",
+        "streetLine2": "",
+        "city": "Springfield",
+        "stateProvince": "OR",
+        "zipPostalCode": "97403",
+        "country": "USA"
+      }
+    },
+    {
+      "warehouseId": 5,
+      "warehouseName": "The Nahasapeemapetilon",
+      "warehouseDescription": "Central West Coast Distribution center",
+      "warehouseAddress": {
+        "buildingName": "Duff HQ",
+        "streetLine1": "2 Evergreen Ter.",
+        "streetLine2": "",
+        "city": "Springfield",
+        "stateProvince": "OR",
+        "zipPostalCode": "97403",
+        "country": "USA"
+      }
+    },
+    {
+      "warehouseId": 6,
+      "warehouseName": "The Nahasapeemapetilon",
+      "warehouseDescription": "Central West Coast Distribution center",
+      "warehouseAddress": {
+        "buildingName": "Duff HQ",
+        "streetLine1": "2 Evergreen Ter.",
+        "streetLine2": "",
+        "city": "Springfield",
+        "stateProvince": "OR",
+        "zipPostalCode": "97403",
+        "country": "USA"
+      }
+    },
+    {
+      "warehouseId": 7,
+      "warehouseName": "The Nahasapeemapetilon",
+      "warehouseDescription": "Central West Coast Distribution center",
+      "warehouseAddress": {
+        "buildingName": "Duff HQ",
+        "streetLine1": "2 Evergreen Ter.",
+        "streetLine2": "",
+        "city": "Springfield",
+        "stateProvince": "OR",
+        "zipPostalCode": "97403",
+        "country": "USA"
+      }
+    },
+    {
+      "warehouseId": 8,
+      "warehouseName": "The Nahasapeemapetilon",
+      "warehouseDescription": "Central West Coast Distribution center",
+      "warehouseAddress": {
+        "buildingName": "Duff HQ",
+        "streetLine1": "2 Evergreen Ter.",
+        "streetLine2": "",
+        "city": "Springfield",
+        "stateProvince": "OR",
+        "zipPostalCode": "97403",
+        "country": "USA"
+      }
+    },
+    {
+      "warehouseId": 9,
+      "warehouseName": "The Nahasapeemapetilon",
+      "warehouseDescription": "Central West Coast Distribution center",
+      "warehouseAddress": {
+        "buildingName": "Duff HQ",
+        "streetLine1": "2 Evergreen Ter.",
+        "streetLine2": "",
+        "city": "Springfield",
+        "stateProvince": "OR",
+        "zipPostalCode": "97403",
+        "country": "USA"
+      }
     }
   ],
   "inventory": [

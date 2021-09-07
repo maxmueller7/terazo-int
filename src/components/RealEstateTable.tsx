@@ -9,6 +9,7 @@ import { IAddress } from 'types/Address';
 const useStyles = makeStyles((theme?: Theme) => ({
   dataGrid: {
     width: '80vw',
+    height: '35vh',
   },
 }));
 
@@ -55,16 +56,15 @@ export const RealEstateTable: FC<{
 
   return (
     <DataGrid
-      autoHeight
       className={classes.dataGrid}
       rows={props.realEstateAssets}
       columns={columns}
       disableSelectionOnClick
-      getRowId={(row) =>
-        props.assetType === BuildingType.FACTORY
+      getRowId={(row) => {
+        return props.assetType === BuildingType.FACTORY
           ? row.factoryId
-          : row.warehouseId
-      }
+          : row.warehouseId;
+      }}
     />
   );
 };
