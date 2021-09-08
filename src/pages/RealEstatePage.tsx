@@ -1,7 +1,7 @@
 import { CircularProgress, Paper, Typography } from '@material-ui/core';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { RealEstateTable } from 'components/RealEstateTable';
-import React, { FC, useEffect, useReducer, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   BuildingType,
   RealEstateEndpoints,

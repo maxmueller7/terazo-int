@@ -159,6 +159,14 @@
       "itemQuantity": "46",
       "itemName": "Waterproof Seal",
       "itemDescription": "For sealing specimens to preserve them."
+    },
+    {
+      "warehouseId": 1,
+      "itemId": 51254,
+      "itemSKU": 48318535,
+      "itemQuantity": "33",
+      "itemName": "Latex Gloves",
+      "itemDescription": "Surgery grade latex gloves."
     }
   ]
 }
