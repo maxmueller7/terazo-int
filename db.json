@@ -41,7 +41,7 @@
     {
       "warehouseId": 2,
       "warehouseName": "The Nahasapeemapetilon",
-      "warehouseDescription": "Central West Coast Distribution center",
+      "warehouseDescription": "Central West Coast Distribution Center",
       "warehouseAddress": {
         "buildingName": "Duff HQ",
         "streetLine1": "2 Evergreen Ter.",
@@ -54,12 +54,12 @@
     },
     {
       "warehouseId": 3,
-      "warehouseName": "The Nahasapeemapetilon",
-      "warehouseDescription": "Central West Coast Distribution center",
+      "warehouseName": "The Nahasapeemapetilon #2",
+      "warehouseDescription": "Central West Coast Distribution Center",
       "warehouseAddress": {
         "buildingName": "Duff HQ",
-        "streetLine1": "2 Evergreen Ter.",
-        "streetLine2": "",
+        "streetLine1": "3 Evergreen Ter.",
+        "streetLine2": "#2",
         "city": "Springfield",
         "stateProvince": "OR",
         "zipPostalCode": "97403",
@@ -68,85 +68,29 @@
     },
     {
       "warehouseId": 4,
-      "warehouseName": "The Nahasapeemapetilon",
-      "warehouseDescription": "Central West Coast Distribution center",
+      "warehouseName": "Monk's Int'l Receiving Center",
+      "warehouseDescription": "Warehouse in JFK related to Airplane Cleaning Chemical Products",
       "warehouseAddress": {
-        "buildingName": "Duff HQ",
-        "streetLine1": "2 Evergreen Ter.",
-        "streetLine2": "",
-        "city": "Springfield",
-        "stateProvince": "OR",
-        "zipPostalCode": "97403",
+        "buildingName": "JFK Hangar #6 ",
+        "streetLine1": "The Port Authority of New York and New Jersey",
+        "streetLine2": "Hangar 6W",
+        "city": "Jamaica",
+        "stateProvince": "NY",
+        "zipPostalCode": "11430",
         "country": "USA"
       }
     },
     {
       "warehouseId": 5,
-      "warehouseName": "The Nahasapeemapetilon",
-      "warehouseDescription": "Central West Coast Distribution center",
+      "warehouseName": "Xtreme Soup Kitchen",
+      "warehouseDescription": "Latex Insulation Products for Restaurants in NYC",
       "warehouseAddress": {
-        "buildingName": "Duff HQ",
-        "streetLine1": "2 Evergreen Ter.",
+        "buildingName": "Soup HQ",
+        "streetLine1": "8 55th Ave.",
         "streetLine2": "",
-        "city": "Springfield",
-        "stateProvince": "OR",
-        "zipPostalCode": "97403",
-        "country": "USA"
-      }
-    },
-    {
-      "warehouseId": 6,
-      "warehouseName": "The Nahasapeemapetilon",
-      "warehouseDescription": "Central West Coast Distribution center",
-      "warehouseAddress": {
-        "buildingName": "Duff HQ",
-        "streetLine1": "2 Evergreen Ter.",
-        "streetLine2": "",
-        "city": "Springfield",
-        "stateProvince": "OR",
-        "zipPostalCode": "97403",
-        "country": "USA"
-      }
-    },
-    {
-      "warehouseId": 7,
-      "warehouseName": "The Nahasapeemapetilon",
-      "warehouseDescription": "Central West Coast Distribution center",
-      "warehouseAddress": {
-        "buildingName": "Duff HQ",
-        "streetLine1": "2 Evergreen Ter.",
-        "streetLine2": "",
-        "city": "Springfield",
-        "stateProvince": "OR",
-        "zipPostalCode": "97403",
-        "country": "USA"
-      }
-    },
-    {
-      "warehouseId": 8,
-      "warehouseName": "The Nahasapeemapetilon",
-      "warehouseDescription": "Central West Coast Distribution center",
-      "warehouseAddress": {
-        "buildingName": "Duff HQ",
-        "streetLine1": "2 Evergreen Ter.",
-        "streetLine2": "",
-        "city": "Springfield",
-        "stateProvince": "OR",
-        "zipPostalCode": "97403",
-        "country": "USA"
-      }
-    },
-    {
-      "warehouseId": 9,
-      "warehouseName": "The Nahasapeemapetilon",
-      "warehouseDescription": "Central West Coast Distribution center",
-      "warehouseAddress": {
-        "buildingName": "Duff HQ",
-        "streetLine1": "2 Evergreen Ter.",
-        "streetLine2": "",
-        "city": "Springfield",
-        "stateProvince": "OR",
-        "zipPostalCode": "97403",
+        "city": "New York City",
+        "stateProvince": "NY",
+        "zipPostalCode": "10017",
         "country": "USA"
       }
     }
