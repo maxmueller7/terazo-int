@@ -1,12 +1,5 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import {
-  Button,
-  Checkbox,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   IconButton,
   makeStyles,
   Paper,
@@ -16,13 +9,12 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
   Theme,
-  Typography,
 } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 import { Inventory } from 'types/Inventory';
 import { Delete } from '@material-ui/icons';
+import EditInventoryDialog from './EditInventoryDialog';
 
 const useStyles = makeStyles((theme?: Theme) => ({
   dataGrid: {
@@ -66,79 +58,9 @@ export const InventoryTable: FC<{
     );
   };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleCheck = () => {
-    setDeleteCheckBox(!deleteCheckBox);
-  };
-
-  const EditDialog = (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      aria-labelledby='form-dialog-title'
-    >
-      <DialogTitle id='form-dialog-title'>Edit Inventory Item</DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          You can update the inventory data here.
-        </DialogContentText>
-        <TextField
-          autoFocus
-          id='warehouseId'
-          label='Warehouse ID'
-          type='number'
-        />
-        <TextField
-          className={classes.textFieldMargingLeft}
-          id='itemId'
-          label='Item ID'
-          type='number'
-        />
-        <TextField
-          className={classes.textFieldMargingLeft}
-          id='itemSKU'
-          label='Item SKU'
-          type='number'
-        />
-        <br />
-        <TextField id='itemQuantity' label='Item Quantity' type='number' />
-        <TextField
-          className={classes.textFieldMargingLeft}
-          id='itemName'
-          label='Item Name'
-          type='string'
-        />
-        <br />
-        <Typography style={{ marginTop: 10 }}>
-          Delete?
-          <Checkbox
-            checked={deleteCheckBox}
-            onChange={handleCheck}
-            name='delete'
-          />
-        </Typography>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color='primary'>
-          Cancel
-        </Button>
-        <Button onClick={handleClose} color='primary'>
-          Update
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
-
   return (
     <>
-      {EditDialog}
+      {<EditInventoryDialog open={open} setOpen={setOpen} />}
       <TableContainer component={Paper} className={classes.dataGrid}>
         <Table>
           <TableHead>
