@@ -72,7 +72,10 @@ export const AddInventoryDialog: FC<{
     };
 
     await axios
-      .post(`http://localhost:3001/${formWarehouseId}/inventory`, postRequest)
+      .post(
+        `http://localhost:3001/${formWarehouseId}/inventory`,
+        JSON.stringify(postRequest)
+      )
       .then((response: AxiosResponse) => {
         if (response.status === 200) {
           alert('Inventory added successfully!');
