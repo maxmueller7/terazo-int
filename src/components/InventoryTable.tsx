@@ -13,8 +13,9 @@ import {
 } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 import { Inventory } from 'types/Inventory';
-import { Delete } from '@material-ui/icons';
-import EditInventoryDialog from './EditInventoryDialog';
+import AddIcon from '@material-ui/icons/Add';
+import { EditInventoryDialog } from './EditInventoryDialog';
+import { AddInventoryDialog } from './AddInventoryDialog';
 
 const useStyles = makeStyles((theme?: Theme) => ({
   dataGrid: {
@@ -29,17 +30,17 @@ const useStyles = makeStyles((theme?: Theme) => ({
 export const InventoryTable: FC<{
   inventory: Inventory[];
 }> = (props): JSX.Element => {
-  const [open, setOpen] = useState<boolean>(false);
-  const [deleteCheckBox, setDeleteCheckBox] = useState<boolean>(false);
+  const [openEditInventory, setOpenEditInventory] = useState<boolean>(false);
+  const [openAddInventory, setOpenAddInventory] = useState<boolean>(false);
 
   const classes = useStyles();
 
   const handleEditRow = (index: number): void => {
-    setOpen(true);
+    setOpenEditInventory(true);
   };
 
   const handleDeleteRow = (index: number): void => {
-    console.log(index);
+    setOpenAddInventory(true);
   };
 
   const editRowButton = (index: number): JSX.Element => {
@@ -50,17 +51,28 @@ export const InventoryTable: FC<{
     );
   };
 
-  const deleteRowButton = (index: number): JSX.Element => {
+  const addRowButton = (index: number): JSX.Element => {
     return (
       <IconButton onClick={() => handleDeleteRow(index)}>
-        <Delete color='secondary' />
+        <AddIcon color='secondary' />
       </IconButton>
     );
   };
 
   return (
     <>
-      {<EditInventoryDialog open={open} setOpen={setOpen} />}
+      {
+        <EditInventoryDialog
+          open={openEditInventory}
+          setOpen={setOpenEditInventory}
+        />
+      }
+      {
+        <AddInventoryDialog
+          open={openAddInventory}
+          setOpen={setOpenAddInventory}
+        />
+      }
       <TableContainer component={Paper} className={classes.dataGrid}>
         <Table>
           <TableHead>
@@ -85,7 +97,7 @@ export const InventoryTable: FC<{
                 ))}
                 <TableCell>
                   {editRowButton(item.itemId)}
-                  {deleteRowButton(item.itemId)}
+                  {addRowButton(item.itemId)}
                 </TableCell>
               </TableRow>
             ))}
