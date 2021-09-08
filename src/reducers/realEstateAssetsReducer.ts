@@ -17,7 +17,7 @@ interface IRealEstateActionState {
   factories: RealEstateAsset<BuildingType.FACTORY>[];
 }
 
-const initialRealEstateAssetsState: IRealEstateActionState = {
+export const initialRealEstateAssetsState: IRealEstateActionState = {
   warehouses: [],
   factories: [],
 };

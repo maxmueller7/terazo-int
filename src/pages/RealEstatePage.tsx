@@ -1,7 +1,12 @@
 import { CircularProgress, Paper, Typography } from '@material-ui/core';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { RealEstateTable } from 'components/RealEstateTable';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState, useReducer } from 'react';
+import {
+  realEstateAssetsReducer,
+  initialRealEstateAssetsState,
+  RealEstateAssetsActionTypes,
+} from 'reducers/realEstateAssetsReducer';
 import {
   BuildingType,
   RealEstateEndpoints,
@@ -10,6 +15,10 @@ import {
 
 export const RealEstatePage: FC<{}> = (): JSX.Element => {
   const [loading, setLoading] = useState(true);
+  const [realEstateAssetsState, dispatch] = useReducer(
+    realEstateAssetsReducer,
+    initialRealEstateAssetsState
+  );
   const [warehouses, setWarehouses] = useState<
     RealEstateAsset<BuildingType.WAREHOUSE>[]
   >([]);
@@ -40,8 +49,14 @@ export const RealEstatePage: FC<{}> = (): JSX.Element => {
       getRealEstateAssets(BuildingType.WAREHOUSE),
       getRealEstateAssets(BuildingType.FACTORY),
     ]).then(([warehouses, factories]) => {
-      setWarehouses(warehouses);
-      setFactories(factories);
+      dispatch({
+        type: RealEstateAssetsActionTypes.FETCH_REAL_ESTATE_ASSETS,
+        payload: { assetType: BuildingType.FACTORY, assetList: factories },
+      });
+      dispatch({
+        type: RealEstateAssetsActionTypes.FETCH_REAL_ESTATE_ASSETS,
+        payload: { assetType: BuildingType.WAREHOUSE, assetList: warehouses },
+      });
     });
     //setting some time out to allow browser to render grid (memory heavy!),
     //otherwise it loads the typography first and it looks odd.
@@ -58,9 +73,9 @@ export const RealEstatePage: FC<{}> = (): JSX.Element => {
             Warehouses
           </Typography>
           <Paper elevation={3}>
-            {!!warehouses.length && (
+            {!!realEstateAssetsState.warehouses.length && (
               <RealEstateTable
-                realEstateAssets={warehouses}
+                realEstateAssets={realEstateAssetsState.warehouses}
                 assetType={BuildingType.WAREHOUSE}
               />
             )}
@@ -70,9 +85,9 @@ export const RealEstatePage: FC<{}> = (): JSX.Element => {
             Factories
           </Typography>
           <Paper elevation={3}>
-            {!!factories.length && (
+            {!!realEstateAssetsState.factories.length && (
               <RealEstateTable
-                realEstateAssets={factories}
+                realEstateAssets={realEstateAssetsState.factories}
                 assetType={BuildingType.FACTORY}
               />
             )}
