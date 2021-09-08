@@ -115,7 +115,9 @@ const App: FC<{}> = (): JSX.Element => {
         : RealEstateEndpoints.WAREHOUSES;
 
     return await axios
-      .get<RealEstateAsset<BuildingType>>(`http://localhost:3001/${endpoint}`)
+      .get<RealEstateAsset<BuildingType>>(`http://localhost:3001/${endpoint}`, {
+        withCredentials: true,
+      })
       .then(
         (response: AxiosResponse<RealEstateAsset<BuildingType.WAREHOUSE>>) => {
           return JSON.parse(JSON.stringify(response.data));
