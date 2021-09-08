@@ -11,9 +11,7 @@ import {
   TableRow,
   Theme,
 } from '@material-ui/core';
-import CreateIcon from '@material-ui/icons/Create';
 import { Inventory } from 'types/Inventory';
-import AddIcon from '@material-ui/icons/Add';
 import { EditInventoryDialog } from './EditInventoryDialog';
 import { AddInventoryDialog } from './AddInventoryDialog';
 
@@ -29,50 +27,12 @@ const useStyles = makeStyles((theme?: Theme) => ({
 
 export const InventoryTable: FC<{
   inventory: Inventory[];
+  selectedWarehouseId: string;
 }> = (props): JSX.Element => {
-  const [openEditInventory, setOpenEditInventory] = useState<boolean>(false);
-  const [openAddInventory, setOpenAddInventory] = useState<boolean>(false);
-
   const classes = useStyles();
-
-  const handleEditRow = (index: number): void => {
-    setOpenEditInventory(true);
-  };
-
-  const handleDeleteRow = (index: number): void => {
-    setOpenAddInventory(true);
-  };
-
-  const editRowButton = (index: number): JSX.Element => {
-    return (
-      <IconButton onClick={() => handleEditRow(index)}>
-        <CreateIcon color='primary' />
-      </IconButton>
-    );
-  };
-
-  const addRowButton = (index: number): JSX.Element => {
-    return (
-      <IconButton onClick={() => handleDeleteRow(index)}>
-        <AddIcon color='secondary' />
-      </IconButton>
-    );
-  };
 
   return (
     <>
-      {
-        <EditInventoryDialog
-          open={openEditInventory}
-          setOpen={setOpenEditInventory}
-        />
-      }
-      {
-        <AddInventoryDialog
-          open={openAddInventory}
-          setOpen={setOpenAddInventory}
-        />
-      }
       <TableContainer component={Paper} className={classes.dataGrid}>
         <Table>
           <TableHead>
@@ -84,7 +44,6 @@ export const InventoryTable: FC<{
                   </TableCell>
                 )
               )}
-              <TableCell>EDIT</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -95,10 +54,6 @@ export const InventoryTable: FC<{
                     {value}
                   </TableCell>
                 ))}
-                <TableCell>
-                  {editRowButton(item.itemId)}
-                  {addRowButton(item.itemId)}
-                </TableCell>
               </TableRow>
             ))}
           </TableBody>

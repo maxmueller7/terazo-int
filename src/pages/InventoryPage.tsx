@@ -1,6 +1,9 @@
+import React, { FC, useEffect, useState } from 'react';
 import {
   CircularProgress,
+  Fab,
   FormControl,
+  IconButton,
   InputLabel,
   makeStyles,
   Paper,
@@ -8,10 +11,13 @@ import {
   Theme,
   Typography,
 } from '@material-ui/core';
+import CreateIcon from '@material-ui/icons/Create';
+import AddIcon from '@material-ui/icons/Add';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { InventoryTable } from 'components/InventoryTable';
-import React, { FC, useEffect, useState } from 'react';
 import { Inventory } from 'types/Inventory';
+import { EditInventoryDialog } from 'components/EditInventoryDialog';
+import { AddInventoryDialog } from 'components/AddInventoryDialog';
 
 const useStyles = makeStyles((theme?: Theme) => ({
   dataGrid: {
@@ -30,12 +36,21 @@ const useStyles = makeStyles((theme?: Theme) => ({
     marginLeft: 10,
     fontSize: '1.2rem',
   },
+  fabAdd: {
+    marginLeft: 30,
+  },
+  fabEdit: {
+    marginLeft: 15,
+  },
 }));
 
 export const InventoryPage: FC<{}> = (): JSX.Element => {
+  const [inventory, setInventory] = useState<Inventory[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [selectedWarehouseId, setSelectedWarehouseId] = useState<string>('');
-  const [inventory, setInventory] = useState<Inventory[]>([]);
+  const [openEditInventory, setOpenEditInventory] = useState<boolean>(false);
+  const [openAddInventory, setOpenAddInventory] = useState<boolean>(false);
+
   const classes = useStyles();
   const handleSelectionChange = (event: any) => {
     setSelectedWarehouseId(event.target.value);
@@ -66,9 +81,42 @@ export const InventoryPage: FC<{}> = (): JSX.Element => {
     );
   }, [selectedWarehouseId]);
 
+  const handleEditInventory = (): void => {
+    setOpenEditInventory(true);
+  };
+
+  const handleAddInventory = (): void => {
+    setOpenAddInventory(true);
+  };
+
   return (
     <>
-      <div style={{ width: '80vw', display: 'flex', justifyContent: 'center' }}>
+      {
+        <EditInventoryDialog
+          open={openEditInventory}
+          setOpen={setOpenEditInventory}
+          selectedWarehouseId={selectedWarehouseId}
+          loading={loading}
+          setLoading={setLoading}
+        />
+      }
+      {
+        <AddInventoryDialog
+          open={openAddInventory}
+          setOpen={setOpenAddInventory}
+          selectedWarehouseId={selectedWarehouseId}
+          loading={loading}
+          setLoading={setLoading}
+        />
+      }
+      <div
+        style={{
+          width: '80vw',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
         <Paper elevation={3} className={classes.paper}>
           <Typography variant='h6'>Select a warehouse by ID:</Typography>
           <FormControl className={classes.formControl} variant='outlined'>
@@ -89,13 +137,31 @@ export const InventoryPage: FC<{}> = (): JSX.Element => {
             </Select>
           </FormControl>
         </Paper>
+
+        <Fab
+          className={classes.fabAdd}
+          color='primary'
+          onClick={() => handleAddInventory()}
+        >
+          <AddIcon />
+        </Fab>
+        <Fab
+          className={classes.fabEdit}
+          color='secondary'
+          onClick={() => handleEditInventory()}
+        >
+          <CreateIcon />
+        </Fab>
       </div>
       <br />
       <>
         {loading ? (
           <CircularProgress color='secondary' />
         ) : !!inventory?.length ? (
-          <InventoryTable inventory={inventory} />
+          <InventoryTable
+            inventory={inventory}
+            selectedWarehouseId={selectedWarehouseId}
+          />
         ) : null}
       </>
     </>
