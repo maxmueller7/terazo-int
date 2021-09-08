@@ -3,7 +3,7 @@ import { RealEstateAsset, BuildingType } from 'types/RealEstateAsset';
 interface IRealEstateAction {
   type: RealEstateAssetsActionTypes;
   payload: {
-    assetType: string;
+    assetType: BuildingType;
     assetList: RealEstateAsset<BuildingType>[];
   };
 }
@@ -12,7 +12,7 @@ export enum RealEstateAssetsActionTypes {
   FETCH_REAL_ESTATE_ASSETS,
 }
 
-interface IRealEstateActionState {
+export interface IRealEstateActionState {
   warehouses: RealEstateAsset<BuildingType.WAREHOUSE>[];
   factories: RealEstateAsset<BuildingType.FACTORY>[];
 }
@@ -23,12 +23,16 @@ export const initialRealEstateAssetsState: IRealEstateActionState = {
 };
 
 export const fetchRealEstateAssets = (
+  state: IRealEstateActionState,
   assetType: BuildingType,
   assetList: RealEstateAsset<BuildingType>[]
-) => ({
-  type: RealEstateAssetsActionTypes.FETCH_REAL_ESTATE_ASSETS,
-  payload: { assetType, assetList },
-});
+): IRealEstateActionState => {
+  if (assetType === BuildingType.WAREHOUSE) {
+    return { ...state, warehouses: assetList };
+  } else {
+    return { ...state, factories: assetList };
+  }
+};
 
 export const realEstateAssetsReducer = (
   state: IRealEstateActionState = initialRealEstateAssetsState,
@@ -37,11 +41,8 @@ export const realEstateAssetsReducer = (
   switch (action.type) {
     case RealEstateAssetsActionTypes.FETCH_REAL_ESTATE_ASSETS:
       const { assetType, assetList } = action.payload;
-      if (assetType === BuildingType.WAREHOUSE) {
-        return { ...state, warehouses: assetList };
-      } else {
-        return { ...state, factories: assetList };
-      }
+      return fetchRealEstateAssets(state, assetType, assetList);
+
     default:
       return state;
   }

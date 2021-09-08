@@ -86,8 +86,6 @@ export const EditInventoryDialog: FC<{
       itemDelete,
     };
 
-    console.log(JSON.stringify(patchRequest));
-
     await axios
       .patch(
         `http://localhost:3001/${formWarehouseId}/inventory`,

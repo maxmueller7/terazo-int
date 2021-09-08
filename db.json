@@ -13,6 +13,20 @@
         "zipPostalCode": "07101",
         "country": "USA"
       }
+    },
+    {
+      "factoryId": 2,
+      "factoryName": "SoCal Asian-American Latex Mfg.",
+      "factoryDescription": "Factory strategically placed in the seaport, with its own shipping dock to East Asian markets",
+      "factoryAddress": {
+        "buildingName": "Dock #3D",
+        "streetLine1": "Port of Los Angeles",
+        "streetLine2": "425 S. Palos Verdes St.",
+        "city": "San Pedro",
+        "stateProvince": "CA",
+        "zipPostalCode": "90731",
+        "country": "USA"
+      }
     }
   ],
   "machines": [
@@ -114,11 +128,11 @@
     },
     {
       "warehouseId": 1,
-      "itemId": 51254,
-      "itemSKU": 48318535,
-      "itemQuantity": "33",
-      "itemName": "Latex Gloves",
-      "itemDescription": "Surgery grade latex gloves."
+      "itemId": 75254,
+      "itemSKU": 48188535,
+      "itemQuantity": "443",
+      "itemName": "Latex Boots",
+      "itemDescription": "Surgery grade latex boots."
     }
   ]
 }

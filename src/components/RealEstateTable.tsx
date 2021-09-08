@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 
 import { makeStyles, Theme } from '@material-ui/core';
 import { DataGrid, GridColDef } from '@material-ui/data-grid';
 
-import { BuildingType, RealEstateAsset } from 'types/RealEstateAsset';
+import { BuildingType } from 'types/RealEstateAsset';
 import { IAddress } from 'types/Address';
+import { RealEstateAssetsContext } from 'context/RealEstateAssetsContext';
 
 const useStyles = makeStyles((theme?: Theme) => ({
   dataGrid: {
@@ -14,11 +15,15 @@ const useStyles = makeStyles((theme?: Theme) => ({
 }));
 
 export const RealEstateTable: FC<{
-  realEstateAssets:
-    | RealEstateAsset<BuildingType.WAREHOUSE>[]
-    | RealEstateAsset<BuildingType.FACTORY>[];
   assetType: BuildingType;
 }> = (props): JSX.Element => {
+  const realEstateAssets = useContext(RealEstateAssetsContext);
+
+  const assetList =
+    props.assetType === BuildingType.FACTORY
+      ? realEstateAssets.factories
+      : realEstateAssets.warehouses;
+
   const classes = useStyles();
 
   const columns: GridColDef[] = [
@@ -57,7 +62,7 @@ export const RealEstateTable: FC<{
   return (
     <DataGrid
       className={classes.dataGrid}
-      rows={props.realEstateAssets}
+      rows={assetList}
       columns={columns}
       disableSelectionOnClick
       getRowId={(row) => {

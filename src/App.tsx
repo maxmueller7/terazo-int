@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useReducer, useState } from 'react';
 import { AppBar, Tabs, Tab, Box, Container } from '@material-ui/core';
 import BusinessIcon from '@material-ui/icons/Business';
 import InfoIcon from '@material-ui/icons/Info';
@@ -8,6 +8,19 @@ import CapitalEquipmentPage from 'pages/CapitalEquipmentPage';
 import AboutUs from 'pages/AboutUs';
 import { InventoryPage } from 'pages/InventoryPage';
 import { RealEstatePage } from 'pages/RealEstatePage';
+import { RealEstateAssetsContext } from 'context/RealEstateAssetsContext';
+import axios, { AxiosResponse, AxiosError } from 'axios';
+import {
+  realEstateAssetsReducer,
+  initialRealEstateAssetsState,
+  RealEstateAssetsActionTypes,
+  fetchRealEstateAssets,
+} from 'reducers/realEstateAssetsReducer';
+import {
+  BuildingType,
+  RealEstateEndpoints,
+  RealEstateAsset,
+} from 'types/RealEstateAsset';
 
 interface ITab {
   children?: React.ReactNode;
@@ -83,6 +96,10 @@ const tabs: ITab[] = [
 
 const App: FC<{}> = (): JSX.Element => {
   const [selectedTabIndexValue, setSelectedTabIndexValue] = useState(0);
+  const [realEstateAssetsState, dispatch] = useReducer(
+    realEstateAssetsReducer,
+    initialRealEstateAssetsState
+  );
 
   const handleTabChange = (
     event: React.ChangeEvent<{}>,
@@ -91,32 +108,78 @@ const App: FC<{}> = (): JSX.Element => {
     setSelectedTabIndexValue(newTabIndexValue);
   };
 
+  const getRealEstateAssets = async (assetType: BuildingType) => {
+    const endpoint =
+      assetType === BuildingType.FACTORY
+        ? RealEstateEndpoints.FACTORIES
+        : RealEstateEndpoints.WAREHOUSES;
+
+    return await axios
+      .get<RealEstateAsset<BuildingType>>(`http://localhost:3001/${endpoint}`)
+      .then(
+        (response: AxiosResponse<RealEstateAsset<BuildingType.WAREHOUSE>>) => {
+          return JSON.parse(JSON.stringify(response.data));
+        }
+      )
+      .catch((error: AxiosError) => {
+        alert(error);
+      });
+  };
+
+  useEffect(() => {
+    Promise.all([
+      getRealEstateAssets(BuildingType.WAREHOUSE),
+      getRealEstateAssets(BuildingType.FACTORY),
+    ]).then(([warehouses, factories]) => {
+      dispatch({
+        type: RealEstateAssetsActionTypes.FETCH_REAL_ESTATE_ASSETS,
+        payload: { assetType: BuildingType.FACTORY, assetList: factories },
+      });
+      dispatch({
+        type: RealEstateAssetsActionTypes.FETCH_REAL_ESTATE_ASSETS,
+        payload: { assetType: BuildingType.WAREHOUSE, assetList: warehouses },
+      });
+    });
+  }, []);
+
   return (
     <>
-      <AppBar position='static'>
-        <Tabs centered onChange={handleTabChange} value={selectedTabIndexValue}>
+      <RealEstateAssetsContext.Provider
+        value={{
+          warehouses: realEstateAssetsState.warehouses,
+          factories: realEstateAssetsState.factories,
+          fetchRealEstateAssets,
+        }}
+      >
+        <AppBar position='static'>
+          <Tabs
+            centered
+            onChange={handleTabChange}
+            value={selectedTabIndexValue}
+          >
+            {tabs.map((tab) => (
+              <Tab
+                label={tab.label}
+                key={`tab-key-${tab.index}${tab.label}`}
+                id={`tab-id-${tab.index}`}
+                icon={tab.icon}
+              />
+            ))}
+          </Tabs>
+        </AppBar>
+        <Container style={{ display: 'flex', justifyContent: 'center' }}>
           {tabs.map((tab) => (
-            <Tab
+            <TabPanel
+              children={tab.children}
+              index={tab.index}
               label={tab.label}
-              key={`tab-key-${tab.index}${tab.label}`}
-              id={`tab-id-${tab.index}`}
-              icon={tab.icon}
+              value={selectedTabIndexValue}
+              key={`tab-panel-key-${tab.index}${tab.label}`}
+              id={`tab-panel-id-${tab.index}`}
             />
           ))}
-        </Tabs>
-      </AppBar>
-      <Container style={{ display: 'flex', justifyContent: 'center' }}>
-        {tabs.map((tab) => (
-          <TabPanel
-            children={tab.children}
-            index={tab.index}
-            label={tab.label}
-            value={selectedTabIndexValue}
-            key={`tab-panel-key-${tab.index}${tab.label}`}
-            id={`tab-panel-id-${tab.index}`}
-          />
-        ))}
-      </Container>
+        </Container>
+      </RealEstateAssetsContext.Provider>
     </>
   );
 };

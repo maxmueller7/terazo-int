@@ -1,5 +1,6 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import {
+  Box,
   CircularProgress,
   Fab,
   FormControl,
@@ -13,11 +14,14 @@ import {
 } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 import AddIcon from '@material-ui/icons/Add';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { InventoryTable } from 'components/InventoryTable';
 import { Inventory } from 'types/Inventory';
 import { EditInventoryDialog } from 'components/EditInventoryDialog';
 import { AddInventoryDialog } from 'components/AddInventoryDialog';
+import { RealEstateAssetsContext } from 'context/RealEstateAssetsContext';
+import { BuildingType, RealEstateAsset } from 'types/RealEstateAsset';
 
 const useStyles = makeStyles((theme?: Theme) => ({
   dataGrid: {
@@ -42,6 +46,14 @@ const useStyles = makeStyles((theme?: Theme) => ({
   fabEdit: {
     marginLeft: 15,
   },
+  errorPaper: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    width: '38vw',
+    padding: 5,
+    margin: 5,
+  },
 }));
 
 export const InventoryPage: FC<{}> = (): JSX.Element => {
@@ -50,6 +62,8 @@ export const InventoryPage: FC<{}> = (): JSX.Element => {
   const [selectedWarehouseId, setSelectedWarehouseId] = useState<string>('');
   const [openEditInventory, setOpenEditInventory] = useState<boolean>(false);
   const [openAddInventory, setOpenAddInventory] = useState<boolean>(false);
+
+  const realEstateAssets = useContext(RealEstateAssetsContext);
 
   const classes = useStyles();
   const handleSelectionChange = (event: any) => {
@@ -130,10 +144,16 @@ export const InventoryPage: FC<{}> = (): JSX.Element => {
               onChange={handleSelectionChange}
             >
               <option value={''}></option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
+              {realEstateAssets.warehouses.map(
+                (warehouse: RealEstateAsset<BuildingType.WAREHOUSE>) => (
+                  <option
+                    key={`option-key-id-${warehouse.warehouseId}-${warehouse.warehouseName}`}
+                    value={warehouse.warehouseId}
+                  >
+                    {warehouse.warehouseId}
+                  </option>
+                )
+              )}
             </Select>
           </FormControl>
         </Paper>
@@ -162,7 +182,20 @@ export const InventoryPage: FC<{}> = (): JSX.Element => {
             inventory={inventory}
             selectedWarehouseId={selectedWarehouseId}
           />
-        ) : null}
+        ) : (
+          <>
+            {!!selectedWarehouseId && (
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Paper elevation={3} className={classes.errorPaper}>
+                  <ErrorOutlineIcon fontSize='large' />
+                  <Typography variant='h6'>
+                    There's inventory for this warehouse!
+                  </Typography>
+                </Paper>
+              </div>
+            )}
+          </>
+        )}
       </>
     </>
   );

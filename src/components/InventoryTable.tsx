@@ -1,6 +1,5 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import {
-  IconButton,
   makeStyles,
   Paper,
   Table,
@@ -12,8 +11,6 @@ import {
   Theme,
 } from '@material-ui/core';
 import { Inventory } from 'types/Inventory';
-import { EditInventoryDialog } from './EditInventoryDialog';
-import { AddInventoryDialog } from './AddInventoryDialog';
 
 const useStyles = makeStyles((theme?: Theme) => ({
   dataGrid: {
