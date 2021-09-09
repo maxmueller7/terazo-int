@@ -89,8 +89,7 @@ export const EditInventoryDialog: FC<{
     await axios
       .patch(
         `http://localhost:3001/${formWarehouseId}/inventory`,
-        JSON.stringify(patchRequest),
-        { withCredentials: true }
+        JSON.stringify(patchRequest)
       )
       .then((response: AxiosResponse) => {
         if (response.status === 200) {

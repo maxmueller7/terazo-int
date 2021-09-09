@@ -37,8 +37,7 @@ class CapitalEquipmentPage extends Component {
       await setTimeout(() => {
         axios
           .get<IMachine[]>(
-            `http://localhost:3001/factories/${factoryId}/machines`,
-            { withCredentials: true }
+            `http://localhost:3001/factories/${factoryId}/machines`
           )
           .then((response: AxiosResponse) => {
             this.setState({ machines: response.data });

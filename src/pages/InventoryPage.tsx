@@ -75,8 +75,7 @@ export const InventoryPage: FC<{}> = (): JSX.Element => {
       setLoading(true);
       return await axios
         .get<Inventory>(
-          `http://localhost:3001/warehouses/${warehouseId}/inventory`,
-          { withCredentials: true }
+          `http://localhost:3001/warehouses/${warehouseId}/inventory`
         )
         .then((response: AxiosResponse<Inventory>) => {
           setLoading(false);
