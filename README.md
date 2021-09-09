@@ -26,12 +26,38 @@ Launches the json-server with mock data in port `3001`). The available routes ar
 
 <br />
 
-# To Acess On The Web:
+# Possible Enhancements:
 
-You can open the app on [https://vandelay-fine-latex.herokuapp.com](https://vandelay-fine-latex.herokuapp.com/). You might have to wait about a minute for it to load since it will have to spin up the dyno.
+## Form Validation:
+
+I should be doing some form validation for Edit/Add inventory. Additionally, some fields should be marked as required. This was breaking, and it's out of the scope of what I wanted to deliver, it's a will-not-fix for now.
+
+## Keeping DRY:
+
+There's code duplication in Edit/Add -InventoryDialog.tsx, and I should find a way to get rid of it. As of now, it's a will-not-fix.
 
 <br />
 
 # Project takeaways:
 
-I'm going to be listing here the issues I came about, how I struggled with them, how I solved them, and what I learned form them. But for now, it's time to go to the synagogue to ring in the new year! 🕍
+## Advanced Types:
+
+When designing the app, I wanted to tie together Factories and Warehouse somehow becuase they are very similar data objects. I knew that doing so would allow me to keep a DRY codebase. This wasn't possibly without learning about [advanced types](https://www.typescriptlang.org/docs/handbook/advanced-types.html).
+
+## Material UI:
+
+I chose to use Material UI since this is the company's preferred styling library. I took this opportunity to learn a few of its features. I previously used Material UI for a Miami-Dade County project a few years back.
+
+## useReducer and Context:
+
+I also took this opporunity to play with useReducer and useContext hooks and createContext. I haven't done so professionally yet. I kept the CapitalEquipmentPage as a class component on purpose to see how using the context there would differ than a function component.
+
+## Heroku:
+
+Initially, i had the app hosted on [https://vandelay-fine-latex.herokuapp.com](https://vandelay-fine-latex.herokuapp.com/), but json-server messes up. I am able to access the app at that address on my computer, but I have issues when testing on a different computer or in Safari (network errors). At this moment, I think the error might be related to CORs. I tried to fix it but I couldn't and don't want to waste more time on this.
+
+<br />
+
+# Changelog:
+
+The commits for this code can be found [here](https://github.com/maxmueller7/terazo-int/commits/main).
