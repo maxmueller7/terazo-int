@@ -6,7 +6,7 @@
 
 # To Run this Project Locally:
 
-First, run `npm install` to install all the dependencies. Then, you have to run these two commands concurrently in two terminal instances:
+First, run `npm install` to install all the dependencies. Then, you have to run these two commands, each in a separate terminal instances:
 
 ## `npm start`
 
