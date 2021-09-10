@@ -20,5 +20,5 @@ export type RealEstateAsset<T extends BuildingType> = {
     [K in `${T}Address`]: IAddress;
   } &
   {
-    [K in `${T}Description`]: String;
+    [K in `${T}Description`]: string;
   };
