@@ -20,9 +20,9 @@ You will also see any lint errors in the console.
 
 Launches the json-server with mock data in port `3001`). The available routes are:
 
-- [http://localhost:3000/factories](http://localhost:3000/factories)
-- [http://localhost:3000/factories/1/machines](http://localhost:3000/factories/1/machines)
-- [http://localhost:3000/warehouses/1/inventory](http://localhost:3000/warehouses/1/inventory)
+- [http://localhost:3001/factories](http://localhost:3001/factories)
+- [http://localhost:3001/factories/1/machines](http://localhost:3001/factories/1/machines)
+- [http://localhost:3001/warehouses/1/inventory](http://localhost:3001/warehouses/1/inventory)
 
 <br />
 
