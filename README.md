@@ -54,7 +54,7 @@ I also took this opporunity to play with useReducer and useContext hooks and cre
 
 ## Heroku:
 
-Initially, i had the app hosted on [https://vandelay-fine-latex.herokuapp.com](https://vandelay-fine-latex.herokuapp.com/), but json-server messes up. I am able to access the app at that address on my computer, but I have issues when testing on a different computer or in Safari (network errors). At this moment, I think the error might be related to CORs. I tried to fix it but I couldn't and don't want to waste more time on this.
+Initially, I had the app hosted on [https://vandelay-fine-latex.herokuapp.com](https://vandelay-fine-latex.herokuapp.com/), but json-server doesn't mend well with heroku for some reason. I think the error might be related to CORS. While I tried debugging, I decided not to fix it at this time.
 
 <br />
 
