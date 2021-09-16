@@ -42,15 +42,15 @@ There's code duplication in Edit/Add -InventoryDialog.tsx, and I should find a w
 
 ## Advanced Types:
 
-When designing the app, I wanted to tie together Factories and Warehouse somehow becuase they are very similar data objects. I knew that doing so would allow me to keep a DRY codebase. This wasn't possibly without learning about [advanced types](https://www.typescriptlang.org/docs/handbook/advanced-types.html).
+When designing the app, I wanted to tie together Factories and Warehouse somehow becuase they are very similar data objects. I knew that doing so would allow me to keep a DRY codebase.
 
 ## Material UI:
 
-I chose to use Material UI since this is the company's preferred styling library. I took this opportunity to learn a few of its features. I previously used Material UI for a Miami-Dade County project a few years back.
+I chose to use Material UI since this is the company's preferred styling library. I took this opportunity to learn a few of its features.
 
 ## useReducer and Context:
 
-I also took this opporunity to play with useReducer and useContext hooks and createContext. I haven't done so professionally yet. I kept the CapitalEquipmentPage as a class component on purpose to see how using the context there would differ than a function component.
+I also took this opporunity to play with useReducer and useContext hooks and createContext. I've mostly used Redux professionally. I kept the CapitalEquipmentPage as a class component on purpose to see how using the context there would differ than a function component.
 
 ## Heroku:
 
