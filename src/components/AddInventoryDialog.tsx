@@ -18,15 +18,21 @@ const useStyles = makeStyles((theme?: Theme) => ({
   },
 }));
 
-export const AddInventoryDialog: FC<{
+type AddInventoryDialogProps = {
   open: boolean;
   setOpen: any;
-  loading: boolean;
   setLoading: any;
   selectedWarehouseId: string;
-}> = (props): JSX.Element => {
+};
+
+export const AddInventoryDialog: FC<AddInventoryDialogProps> = ({
+  open,
+  setOpen,
+  setLoading,
+  selectedWarehouseId,
+}): JSX.Element => {
   const [formWarehouseId, setFormWarehouseId] = useState<string>(
-    props.selectedWarehouseId
+    selectedWarehouseId
   );
   const [itemSKU, setItemSKU] = useState<string>('');
   const [itemQuantity, setItemQuantity] = useState<string>('');
@@ -35,7 +41,7 @@ export const AddInventoryDialog: FC<{
   const classes = useStyles();
 
   const handleClose = () => {
-    props.setOpen(false);
+    setOpen(false);
   };
 
   const handleWarehouseId = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +67,7 @@ export const AddInventoryDialog: FC<{
   };
 
   const handleSubmitAddInventory = async (e: any) => {
-    props.setLoading(true);
+    setLoading(true);
     e.preventDefault();
     const postRequest = {
       warehouseId: formWarehouseId,
@@ -79,7 +85,7 @@ export const AddInventoryDialog: FC<{
       .then((response: AxiosResponse) => {
         if (response.status === 200) {
           alert('Inventory added successfully!');
-          setFormWarehouseId(props.selectedWarehouseId);
+          setFormWarehouseId(selectedWarehouseId);
           setItemDescription('');
           setItemName('');
           setItemQuantity('');
@@ -89,12 +95,12 @@ export const AddInventoryDialog: FC<{
       .catch((error: AxiosError) => {
         alert(`Error while adding inventory!\n${error.message}`);
       })
-      .finally(props.setLoading(false));
+      .finally(setLoading(false));
   };
 
   return (
     <Dialog
-      open={props.open}
+      open={open}
       onClose={handleClose}
       aria-labelledby='form-dialog-title'
     >
@@ -104,7 +110,7 @@ export const AddInventoryDialog: FC<{
           <DialogContentText>Add inventory to a warehouse.</DialogContentText>
           <TextField
             autoFocus
-            defaultValue={props.selectedWarehouseId}
+            defaultValue={selectedWarehouseId}
             id='warehouseId'
             label='Warehouse ID'
             onChange={handleWarehouseId}

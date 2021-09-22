@@ -20,15 +20,21 @@ const useStyles = makeStyles((theme?: Theme) => ({
   },
 }));
 
-export const EditInventoryDialog: FC<{
+type EditInventoryDialogProps = {
   open: boolean;
   setOpen: any;
-  loading: boolean;
   setLoading: any;
   selectedWarehouseId: string;
-}> = (props): JSX.Element => {
+};
+
+export const EditInventoryDialog: FC<EditInventoryDialogProps> = ({
+  open,
+  setOpen,
+  setLoading,
+  selectedWarehouseId,
+}): JSX.Element => {
   const [formWarehouseId, setFormWarehouseId] = useState<string>(
-    props.selectedWarehouseId
+    selectedWarehouseId
   );
   const [itemId, setItemId] = useState<string>('');
   const [itemSKU, setItemSKU] = useState<string>('');
@@ -40,7 +46,7 @@ export const EditInventoryDialog: FC<{
   const classes = useStyles();
 
   const handleClose = () => {
-    props.setOpen(false);
+    setOpen(false);
   };
 
   const handleWarehouseId = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,7 +80,7 @@ export const EditInventoryDialog: FC<{
   };
 
   const handleSubmitEditInventory = async (e: any) => {
-    props.setLoading(true);
+    setLoading(true);
     e.preventDefault();
     const patchRequest = {
       warehouseId: formWarehouseId,
@@ -94,7 +100,7 @@ export const EditInventoryDialog: FC<{
       .then((response: AxiosResponse) => {
         if (response.status === 200) {
           alert('Saved successfully!');
-          setFormWarehouseId(props.selectedWarehouseId);
+          setFormWarehouseId(selectedWarehouseId);
           setItemDelete(false);
           setItemDescription('');
           setItemId('');
@@ -106,12 +112,12 @@ export const EditInventoryDialog: FC<{
       .catch((error: AxiosError) => {
         alert(`Error while editing inventory!\n${error.message}`);
       })
-      .finally(props.setLoading(false));
+      .finally(setLoading(false));
   };
 
   return (
     <Dialog
-      open={props.open}
+      open={open}
       onClose={handleClose}
       aria-labelledby='form-dialog-title'
     >
@@ -121,7 +127,7 @@ export const EditInventoryDialog: FC<{
           <DialogContentText>Edit inventory details here.</DialogContentText>
           <TextField
             onChange={handleWarehouseId}
-            defaultValue={props.selectedWarehouseId}
+            defaultValue={selectedWarehouseId}
             autoFocus
             id='warehouseId'
             label='Warehouse ID'

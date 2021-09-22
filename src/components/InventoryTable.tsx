@@ -22,10 +22,13 @@ const useStyles = makeStyles((theme?: Theme) => ({
   },
 }));
 
-export const InventoryTable: FC<{
+type InventoryTableProps = {
   inventory: Inventory[];
-  selectedWarehouseId: string;
-}> = (props): JSX.Element => {
+};
+
+export const InventoryTable: FC<InventoryTableProps> = ({
+  inventory,
+}): JSX.Element => {
   const classes = useStyles();
 
   return (
@@ -34,17 +37,15 @@ export const InventoryTable: FC<{
         <Table>
           <TableHead>
             <TableRow>
-              {Object.keys(props.inventory[0]).map(
-                (key: string, idx: number) => (
-                  <TableCell key={`table-cell-key-${key}${idx}`}>
-                    {key.replace(/([a-z])([A-Z])/g, '$1 $2').toUpperCase()}
-                  </TableCell>
-                )
-              )}
+              {Object.keys(inventory[0]).map((key: string, idx: number) => (
+                <TableCell key={`table-cell-key-${key}${idx}`}>
+                  {key.replace(/([a-z])([A-Z])/g, '$1 $2').toUpperCase()}
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.inventory.map((item: Inventory) => (
+            {inventory.map((item: Inventory) => (
               <TableRow key={`table-row-key-${item.itemSKU}`}>
                 {Object.values(item).map((value: string | number) => (
                   <TableCell key={`table-cell-key-${item.itemSKU}-${value}`}>

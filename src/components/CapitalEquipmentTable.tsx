@@ -11,9 +11,13 @@ const useStyles = makeStyles((theme?: Theme) => ({
   },
 }));
 
-export const CapitalEquipmentTable: FC<{ machines: IMachine[] }> = (
-  props
-): JSX.Element => {
+type CapitalEquipmentTableProps = {
+  machines: IMachine[];
+};
+
+export const CapitalEquipmentTable: FC<CapitalEquipmentTableProps> = ({
+  machines,
+}): JSX.Element => {
   const classes = useStyles();
 
   const columns: GridColDef[] = [
@@ -35,7 +39,7 @@ export const CapitalEquipmentTable: FC<{ machines: IMachine[] }> = (
     <DataGrid
       autoHeight
       className={classes.dataGrid}
-      rows={props.machines}
+      rows={machines}
       columns={columns}
       disableSelectionOnClick
       getRowId={(row) => row.machineId}

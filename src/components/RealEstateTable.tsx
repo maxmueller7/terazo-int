@@ -14,13 +14,17 @@ const useStyles = makeStyles((theme?: Theme) => ({
   },
 }));
 
-export const RealEstateTable: FC<{
+type RealEstateTableProps = {
   assetType: BuildingType;
-}> = (props): JSX.Element => {
+};
+
+export const RealEstateTable: FC<RealEstateTableProps> = ({
+  assetType,
+}): JSX.Element => {
   const realEstateAssets = useContext(RealEstateAssetsContext);
 
   const assetList =
-    props.assetType === BuildingType.FACTORY
+    assetType === BuildingType.FACTORY
       ? realEstateAssets.factories
       : realEstateAssets.warehouses;
 
@@ -28,18 +32,18 @@ export const RealEstateTable: FC<{
 
   const columns: GridColDef[] = [
     {
-      field: `${props.assetType}Id`,
-      headerName: `${props.assetType.toUpperCase()} ID`,
+      field: `${assetType}Id`,
+      headerName: `${assetType.toUpperCase()} ID`,
       width: 190,
     },
     {
-      field: `${props.assetType}Name`,
-      headerName: `${props.assetType.toUpperCase()} NAME`,
+      field: `${assetType}Name`,
+      headerName: `${assetType.toUpperCase()} NAME`,
       width: 215,
     },
     {
-      field: `${props.assetType}Address`,
-      headerName: `${props.assetType.toUpperCase()} ADDRESS`,
+      field: `${assetType}Address`,
+      headerName: `${assetType.toUpperCase()} ADDRESS`,
       width: 500,
       renderCell: (address) => {
         return (
@@ -53,8 +57,8 @@ export const RealEstateTable: FC<{
       },
     },
     {
-      field: `${props.assetType}Description`,
-      headerName: `${props.assetType.toUpperCase()} ID`,
+      field: `${assetType}Description`,
+      headerName: `${assetType.toUpperCase()} ID`,
       width: 500,
     },
   ];
@@ -66,7 +70,7 @@ export const RealEstateTable: FC<{
       columns={columns}
       disableSelectionOnClick
       getRowId={(row) => {
-        return props.assetType === BuildingType.FACTORY
+        return assetType === BuildingType.FACTORY
           ? row.factoryId
           : row.warehouseId;
       }}
